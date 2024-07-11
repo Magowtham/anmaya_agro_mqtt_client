@@ -1,0 +1,17 @@
+[mqtt]
+host = "127.0.0.1"
+port = 1883
+client_id="server"
+subscribe_topic1="iot/ack"
+subscribe_topic2="relays/state"
+subscribe_topic3="reboot/ack"
+keep_alive=5
+
+[database]
+uri="mongodb+srv://test:7sSDAEBmVYu8nmuG@cluster1.wlyepas.mongodb.net/anmaya-testing?retryWrites=true&w=majority&appName=Cluster1"
+database_name="anmaya-testing"
+collection1_name="units"
+collection2_name="nodes"
+collection3_name="unit_logs"
+
+
