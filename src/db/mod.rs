@@ -10,6 +10,7 @@ use crate::models::Unit;
 use crate::models::Node;
 use crate::models::UnitLog;
 
+
 pub struct MongodbService {
     db:Database,
     unit_collection:Collection<Unit>,
@@ -103,7 +104,21 @@ impl MongodbService {
         }
     } 
 
+    pub async fn update_unit_state(self:&Self,subscribe_id:String,unit_state:bool)->Result<(),MongoError>{
 
+        let unit_filter_query=doc! {
+            "subscribe_id":subscribe_id
+        };
 
+        let unit_update_query=doc! {
+            "$set":{
+                "state": unit_state
+            }
+        };
+        
+        self.unit_collection.update_one(unit_filter_query, unit_update_query).await?;
+
+        return Ok(());
+    }
     
 }

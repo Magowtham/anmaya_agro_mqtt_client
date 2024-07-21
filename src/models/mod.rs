@@ -42,14 +42,14 @@ pub struct UnitLog {
 
 #[derive(Debug,Serialize,Deserialize)]
 pub struct IOTAck {
-        pub unit_id:String,
+        pub unit_subscribe_id:String,
         pub relay_id:i32,
         pub relay_state:bool
 }
 
 #[derive(Debug,Serialize,Deserialize)]
-pub struct RebootAck {
-     pub unit_id:String
+pub struct RestartAck {
+     pub unit_subscribe_id:String
 }
 
 #[derive(Debug,Serialize,Deserialize)]
@@ -71,6 +71,15 @@ pub struct ConnectedNodes {
     pub name:String,
 }
 
+#[derive(Debug,Serialize,Deserialize)]
+pub struct LastWillMessage{
+    pub unit_id:String
+}
+
+#[derive(Debug,Serialize,Deserialize)]
+pub struct UnitConnectedMessage {
+    pub unit_id:String
+}
 
 impl UnitLog {
     pub fn new(unit_id:String,relay_id:i32,relay_state:bool,date_time:DateTime<Utc>) -> Self {

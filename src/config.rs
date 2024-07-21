@@ -1,7 +1,7 @@
 use config::{Config,ConfigError,File};
 use serde::Deserialize;
 
-#[derive(Debug,Deserialize)]
+#[derive(Clone,Debug,Deserialize)]
 pub struct MqttSettings {
     pub host:String,
     pub port:u16,
@@ -12,7 +12,7 @@ pub struct MqttSettings {
     pub keep_alive:u64
 }
 
-#[derive(Debug,Deserialize)]
+#[derive(Clone,Debug,Deserialize)]
 pub struct DatabaseSettings {
     pub uri:String,
     pub database_name:String,
@@ -21,10 +21,19 @@ pub struct DatabaseSettings {
     pub collection3_name:String
 }
 
-#[derive(Debug,Deserialize)]
+
+#[derive(Clone,Debug,Deserialize)]
+pub struct SocketSettings {
+    pub uri:String,
+    pub event1:String,
+    pub event2:String
+}
+
+#[derive(Clone,Debug,Deserialize)]
 pub struct Settings {
     pub mqtt:MqttSettings,
-    pub database:DatabaseSettings
+    pub database:DatabaseSettings,
+    pub socket:SocketSettings
 }
 
 impl Settings {
